@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Button, Form } from "react-bootstrap";
-import { Link, Navigate } from "react-router-dom";
-import { RegisterUser } from "../services/firebase/api";
+import { Link, Navigate, redirect } from "react-router-dom";
+import { LoginUser } from "../services/firebase/api";
 import { ValidateEmail, ValidatePassword } from "../utils";
 
 export function Login() {
@@ -20,8 +20,9 @@ export function Login() {
       alert("Please use a valid password");
       return;
     }
-    let reg = await RegisterUser(loginInformation);
+    let reg = await LoginUser(loginInformation);
     if (reg.accessToken) setLoginInformation({ email: "", password: "" });
+    redirect('/dashboard')
   };
 
   return (
