@@ -1,3 +1,5 @@
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+
 export default function Header(){
     return <nav class="navbar navbar-expand-lg sticky-top navbar-dark" style={{
         backgroundColor: "#242424"
@@ -16,7 +18,9 @@ export default function Header(){
           <a class="nav-link" href="#">Videojuegos</a>
         </li>
         </ul>
-          <a class="btn btn-outline-$red-100" href="#">Registrarse</a>
+          <a class="btn btn-outline-secondary" href="#" style={{
+            color:"whitesmoke",
+          }}>Registrarse</a>
       </div>
     </div>
   </nav>
