@@ -5,6 +5,8 @@ import "./styles/index.css";
 import Register from "./views/register.jsx";
 import { Dashboard } from "./views/dashboard";
 import { Login } from "./views/login";
+import { Videogames } from "./views/videogames.jsx";
+import { Profile } from "./views/profile.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { PrivateRoute } from "./layout/PrivateRoute.jsx";
 import { PublicRoute } from "./layout/PublicRoute.jsx";
@@ -30,6 +32,14 @@ const router = createBrowserRouter([
       {
         path: "/dashboard",
         element: <Dashboard />,
+      },
+      {
+        path: "/videogames",
+        element: <Videogames />,
+      },
+      {
+        path: "/profile",
+        element: <Profile />,
       },
     ],
   },
