@@ -26,7 +26,7 @@ function Register() {
 
   return (
     <Form
-      className="mx-auto col-4 mt-5 border p-3 rounded"
+      className="mx-auto col-md-6 col-12 mt-5 border p-3 rounded"
       onSubmit={async (e) => await SubmitForm(e)}
     >
       <h1 className="text-center">Register now!</h1>

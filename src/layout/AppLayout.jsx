@@ -1,10 +1,11 @@
 
 import React from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet,Navigate } from 'react-router-dom';
+import { isAuthenticated } from '../utils';
 
 export const AppLayout = () => {
-    return (
-        <div className="container-fluid" style={{height: "100vh"}}>
+    return isAuthenticated() ? <Navigate to="/dashboard" /> : (
+        <div className="container" style={{height: "100vh"}}>
             <Outlet />
         </div>
     )

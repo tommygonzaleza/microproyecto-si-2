@@ -1,6 +1,6 @@
 export const isAuthenticated = () => {
   // It will be changed to
-  return sessionStorage.getItem("user_id");
+  return sessionStorage.getItem("accessToken");
 };
 
 export const ValidateEmail = (e) => {

@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Tarjeta() {
+export default function Card() {
   return (
     <section
       style={{

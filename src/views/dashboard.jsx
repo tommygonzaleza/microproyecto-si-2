@@ -1,5 +1,31 @@
-import React from 'react';
+import '../styles/app.css';
+import Card from '../components/Card';
+import Header from '../components/navigation/Header';
 
-export const Dashboard = () => {
-    return <div className='col-10 mx-auto bg-dark'>Hello world</div>
+export function Dashboard() {
+  return (
+    <div className="App">
+      <Header></Header>
+      <section style={{
+        marginTop:"1rem",
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'center',
+        alignItems: 'center',
+        gap: '10px',
+      }}>
+      <Card></Card>
+      <Card></Card>
+      <Card></Card>
+      <Card></Card>
+      <Card></Card>
+      <Card></Card>
+      <Card></Card>
+      <Card></Card>
+      <Card></Card>
+      <Card></Card>
+      <Card></Card>
+      </section>
+    </div>
+  );
 }

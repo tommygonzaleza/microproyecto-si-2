@@ -17,7 +17,7 @@ export const RegisterUser = async ({ email, password }) => {
       user: response.user.reloadUserInfo,
       accessToken: response.user.accessToken,
     };
-    sessionStorage.setItem("userSession", userSession);
+    sessionStorage.setItem("accessToken", response.user.accessToken);
     return userSession;
   } catch (error) {
     alert("Failed to register user." + error.message);
@@ -33,7 +33,8 @@ export const LoginUser = async ({ email, password }) => {
       user: response.user.reloadUserInfo,
       accessToken: response.user.accessToken,
     };
-    sessionStorage.setItem("userSession", userSession);
+    sessionStorage.setItem("accessToken", response.user.accessToken);
+    redirect("/dashboard");
     return userSession;
   } catch (error) {
     alert("Failed to login." + error.message);
@@ -46,8 +47,8 @@ export const LogoutUser = async () => {
   try {
     const response = signOut(auth);
     sessionStorage.removeItem("userSession");
-    alert('Logged out successfully!');
-    redirect('/');
+    alert("Logged out successfully!");
+    redirect("/");
   } catch (error) {
     alert("Failed to log out." + error.message);
     console.error("Failed to log out." + error.message);
