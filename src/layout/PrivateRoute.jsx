@@ -3,7 +3,7 @@ import { isAuthenticated } from "../utils";
 
 export const PrivateRoute = () => {
   return isAuthenticated() ? (
-    <div className="container" style={{ height: "100vh" }}>
+    <div>
       <Outlet />
     </div>
   ) : (
