@@ -5,6 +5,8 @@ import './styles/index.css';
 import Register from './views/register.jsx';
 import { Dashboard } from './views/dashboard';
 import { Login } from './views/login';
+import { Videogames } from './views/videogames.jsx';
+import { Profile } from './views/profile.jsx';
 import {
   createBrowserRouter,
   RouterProvider,
@@ -33,6 +35,24 @@ const router = createBrowserRouter([
       {
         path: '/dashboard',
         element: <Dashboard />
+      }
+    ]
+  },
+  {
+    element: <PrivateRoute />,
+    children: [
+      {
+        path: '/videogames',
+        element: <Videogames />
+      }
+    ]
+  },
+  {
+    element: <PrivateRoute />,
+    children: [
+      {
+        path: '/profile',
+        element: <Profile />
       }
     ]
   }

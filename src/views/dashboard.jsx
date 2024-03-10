@@ -117,8 +117,9 @@ export function Dashboard() {
     }
   ]
  
-  return (
-    <div className="App">
+  return (<section style={{
+        backgroundColor:"#560000"
+      }}>
       <Header></Header>
       <section style={{
         backgroundImage:
@@ -138,7 +139,6 @@ export function Dashboard() {
        props={club}/>
      ))
      }
-      </section>
-    </div>
+      </section></section>
   );
 }

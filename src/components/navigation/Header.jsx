@@ -31,19 +31,19 @@ export default function Header() {
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/dashboard">
+              <a className="nav-link" href="/videogames">
                 Videojuegos
               </a>
             </li>
           </ul>
           <a
             className="btn btn-outline-secondary"
-            href="/register"
+            href="/profile"
             style={{
               color: "whitesmoke",
             }}
           >
-            Registrarse
+            Perfil
           </a>
         </div>
       </div>
