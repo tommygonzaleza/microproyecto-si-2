@@ -1,23 +1,32 @@
 import './App.css';
+import Tarjeta from './components/Card';
+import Header from './components/navigation/Header';
 
 function App() {
   return (
+
     <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+      <Header></Header>
+      <section style={{
+        marginTop:"1rem",
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'center',
+        alignItems: 'center',
+        gap: '10px',
+      }}>
+      <Tarjeta></Tarjeta>
+      <Tarjeta></Tarjeta>
+      <Tarjeta></Tarjeta>
+      <Tarjeta></Tarjeta>
+      <Tarjeta></Tarjeta>
+      <Tarjeta></Tarjeta>
+      <Tarjeta></Tarjeta>
+      <Tarjeta></Tarjeta>
+      <Tarjeta></Tarjeta>
+      <Tarjeta></Tarjeta>
+      <Tarjeta></Tarjeta>
+      </section>
+    </div>);}
 
 export default App;
