@@ -3,7 +3,8 @@ import {
   signInWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
-import { auth } from "./index";
+import { doc, setDoc } from "firebase/firestore"; 
+import { auth, db } from "./index";
 import { redirect } from "react-router-dom";
 
 export const RegisterUser = async ({ email, password }) => {
@@ -55,3 +56,7 @@ export const LogoutUser = async () => {
     return error;
   }
 };
+
+export const addElementToDB = async (collectionName, collectionID, collectionData) => {
+  await setDoc(doc(db, collectionName, collectionID), collectionData);
+}
