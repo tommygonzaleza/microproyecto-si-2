@@ -1,6 +1,19 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
+import { getSingleClub } from "../services/firebase/api";
 
 export default function CardClub({ club }) {
+  const [games, setGames] = useState([]);
+  useEffect(() => {
+    fetchClub();
+  }, [])
+
+  const fetchClub = async () => {
+    let _club = await getSingleClub(club.id);
+    setGames(_club.videojuegos);
+  }
+
+  console.log('games', games)
+  
   return (
     <section
       style={{
@@ -53,9 +66,9 @@ export default function CardClub({ club }) {
             gap: "1rem",
           }}
         >
-          {/* club.videojuegos.map((videojuego, index) => (
-              <h3 key={index}>{videojuego}</h3>
-            )) */}
+        {games.map((videojuego, index) => (
+            <h5 key={index}>{videojuego.titulo}</h5>
+        ))}
         </footer>
       </section>
     </section>

@@ -1,25 +1,20 @@
 import "../styles/app.css";
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../components/navigation/Header";
 import CardClub from "../components/CardClub";
-import { getCollectionData } from "../services/firebase/api";
+import { getClubs } from "../services/firebase/api";
 
 export function Dashboard() {
-  const [games, setGames] = useState([]);
   const [clubs, setClubs] = useState([]);
 
   useEffect(() => {
-    getData("videojuegos", setGames);
-    getData("clubs", setClubs);
+    fetchClubs();
   }, [])
 
-  const getData = async (collectionName, setState) => {
-    let _data = [];
-    let newData = await getCollectionData(collectionName, _data);
-    setState(newData);
-  };
-
-  console.log(clubs)
+  const fetchClubs = async () => {
+    let _clubs = await getClubs();
+    setClubs(_clubs);
+  }
 
   return (
     <section
@@ -27,7 +22,7 @@ export function Dashboard() {
         backgroundColor: "#560000",
       }}
     >
-      <Header></Header>
+      <Header />
       <section
         style={{
           backgroundImage:
