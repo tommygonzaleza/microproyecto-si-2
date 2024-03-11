@@ -11,8 +11,6 @@ export default function CardClub({ club }) {
     let _club = await getSingleClub(club.id);
     setGames(_club.videojuegos);
   }
-
-  console.log('games', games)
   
   return (
     <section
