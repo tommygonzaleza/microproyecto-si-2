@@ -3,28 +3,40 @@ import {
   signInWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
-import { collection, getDoc, getDocs } from "firebase/firestore";
-import { doc, query, where, setDoc } from "firebase/firestore";
+import { collection, getDoc, getDocs, setDoc, doc } from "firebase/firestore";
 import { auth, db } from "./index";
 import { redirect } from "react-router-dom";
 
-export const RegisterUser = async ({ email, password }) => {
+export const RegisterUser = async (userData) => {
   try {
     const response = await createUserWithEmailAndPassword(
       auth,
-      email,
-      password
+      userData.email,
+      userData.password
     );
     let userSession = {
       user: response.user.reloadUserInfo,
       accessToken: response.user.accessToken,
     };
     sessionStorage.setItem("accessToken", response.user.accessToken);
+    await CreateUserProfile({ ...userData, uid: response.user.uid });
     return userSession;
   } catch (error) {
     alert("Failed to register user." + error.message);
     console.error("Failed to register user." + error.message);
     return error;
+  }
+};
+
+export const CreateUserProfile = async (userProfile) => {
+  try {
+    delete userProfile["password"];
+    userProfile.membresias = [""];
+    const docRef = doc(db, "users", userProfile.uid);
+    let response = await setDoc(docRef, userProfile);
+    console.log("response", response);
+  } catch (e) {
+    console.error("Failed to create user profile." + e.message);
   }
 };
 
@@ -76,8 +88,8 @@ export const getSingleClub = async (collectionID) => {
     if (clubs.videojuegos) {
       let _videojuegos = clubs.videojuegos
         .map(async (_videojuego) => getSingleVideogame(_videojuego.id))
-        .filter(async (item) => await item !== null);
-      clubs['videojuegos'] = await Promise.all(_videojuegos);
+        .filter(async (item) => (await item) !== null);
+      clubs["videojuegos"] = await Promise.all(_videojuegos);
     }
     return clubs;
   } catch (e) {
@@ -105,6 +117,21 @@ export const getClubs = async () => {
       };
     });
     return clubs;
+  } catch (e) {
+    console.log("Error getting document:", e);
+  }
+};
+
+export const getVideogames = async () => {
+  try {
+    const collectionRequest = await getDocs(collection(db, "videojuegos"));
+    const videogames = collectionRequest.docs.map((item) => {
+      return {
+        id: item.id,
+        ...item.data(),
+      };
+    });
+    return videogames;
   } catch (e) {
     console.log("Error getting document:", e);
   }
