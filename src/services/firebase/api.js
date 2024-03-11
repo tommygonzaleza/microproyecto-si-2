@@ -10,6 +10,8 @@ import {
   setDoc,
   doc,
   updateDoc,
+  arrayUnion,
+  arrayRemove,
 } from "firebase/firestore";
 import { auth, db } from "./index";
 import { redirect } from "react-router-dom";
@@ -48,9 +50,37 @@ export const CreateUserProfile = async (userProfile) => {
 };
 
 export const UpdateUserProfile = async (userProfile, uid) => {
-  const docRef = doc(db, "users", uid);
-  await updateDoc(docRef, userProfile);
-  alert("Información del usuario actualizada!");
+  try {
+    const docRef = doc(db, "users", uid);
+    await updateDoc(docRef, userProfile);
+    alert("Información del usuario actualizada!");
+  } catch (e) {
+    console.error("Failed to update user profile." + e.message);
+  }
+};
+
+export const JoinClub = async (club, uid) => {
+  try {
+    const docRef = doc(db, "users", uid);
+    await updateDoc(docRef, {
+      membresias: arrayUnion(club.id),
+    });
+    alert(`Te has unido al club ${club.nombre}`);
+  } catch (e) {
+    console.error("Failed to join club." + e.message);
+  }
+};
+
+export const LeaveClub = async (club, uid) => {
+  try {
+    const docRef = doc(db, "users", uid);
+    await updateDoc(docRef, {
+      membresias: arrayRemove(club.id),
+    });
+    alert(`Has abandonado el club ${club.nombre}`);
+  } catch (e) {
+    console.error("Failed to leave club." + e.message);
+  }
 };
 
 export const getUserProfile = async (uid) => {

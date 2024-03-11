@@ -1,17 +1,42 @@
-import React, {useState, useEffect} from "react";
-import { getSingleClub } from "../services/firebase/api";
+import React, { useState, useEffect } from "react";
+import { getSingleClub, getUserProfile, JoinClub, LeaveClub } from "../services/firebase/api";
 
 export default function CardClub({ club }) {
   const [games, setGames] = useState([]);
+  const [joinedClubs, setJoinedClubs] = useState([]);
+
   useEffect(() => {
     fetchClub();
-  }, [])
+    fetchUserProfile();
+  }, []);
+
+  useEffect(() => {
+    sessionStorage.setItem("joinedClubs", joinedClubs);
+  }, [joinedClubs])
 
   const fetchClub = async () => {
     let _club = await getSingleClub(club.id);
     setGames(_club.videojuegos);
-  }
-  
+  };
+
+  const fetchUserProfile = async () => {
+    let uid = sessionStorage.getItem("uid");
+    let _userProfile = await getUserProfile(uid);
+    setJoinedClubs(_userProfile.membresias);
+  };
+
+  const joinNewClub = async (_club) => {
+    let uid = sessionStorage.getItem("uid");
+    await JoinClub(_club, uid);
+    await fetchUserProfile();
+  };
+
+  const leaveNewClub = async (_club) => {
+    let uid = sessionStorage.getItem("uid");
+    await LeaveClub(_club, uid);
+    await fetchUserProfile();
+  };
+
   return (
     <section
       style={{
@@ -50,18 +75,35 @@ export default function CardClub({ club }) {
           <h1>{club.nombre}</h1>
           <p>{club.descripcion}</p>
         </div>
-        <button
+        {!joinedClubs.includes(club.id) ? (
+          <button
             className="btn btn-outline-secondary"
             style={{
               color: "whitesmoke",
             }}
+            onClick={() => joinNewClub(club)}
           >
             Unete!
           </button>
-        
-        <h3 style={{
-          color:"whitesmoke"
-          }}>Juegos:</h3>
+        ) : (
+          <button
+            className="btn btn-outline-secondary"
+            style={{
+              color: "whitesmoke",
+            }}
+            onClick={() => leaveNewClub(club)}
+          >
+            Dejar club :(
+          </button>
+        )}
+
+        <h3
+          style={{
+            color: "whitesmoke",
+          }}
+        >
+          Juegos:
+        </h3>
         <footer
           style={{
             backgroundColor: "#4f4f4fa8",
@@ -75,11 +117,10 @@ export default function CardClub({ club }) {
             paddingBottom: "1rem",
             gap: "1rem",
           }}
-          
         >
-        {games.map((videojuego, index) => (
+          {games.map((videojuego, index) => (
             <h5 key={index}>• {videojuego.titulo}</h5>
-        ))}
+          ))}
         </footer>
       </section>
     </section>
