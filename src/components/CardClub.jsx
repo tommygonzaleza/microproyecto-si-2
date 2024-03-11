@@ -49,7 +49,17 @@ export default function CardClub({ club }) {
         >
           <h1>{club.nombre}</h1>
           <p>{club.descripcion}</p>
-        </div><h3 style={{
+        </div>
+        <button
+            className="btn btn-outline-secondary"
+            style={{
+              color: "whitesmoke",
+            }}
+          >
+            Unete!
+          </button>
+        
+        <h3 style={{
           color:"whitesmoke"
           }}>Juegos:</h3>
         <footer
