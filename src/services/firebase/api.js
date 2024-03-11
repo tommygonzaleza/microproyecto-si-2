@@ -3,6 +3,7 @@ import {
   signInWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
+import { collection, query, getDocs } from "firebase/firestore";
 import { doc, setDoc } from "firebase/firestore"; 
 import { auth, db } from "./index";
 import { redirect } from "react-router-dom";
@@ -59,4 +60,10 @@ export const LogoutUser = async () => {
 
 export const addElementToDB = async (collectionName, collectionID, collectionData) => {
   await setDoc(doc(db, collectionName, collectionID), collectionData);
+}
+
+export const getCollectionData = async (collectionName, storageList) => {
+  const collectionRequest = await getDocs(collection(db, collectionName));
+  collectionRequest.forEach(doc => storageList.push(doc.data()))
+  return storageList;
 }
