@@ -124,14 +124,14 @@ export default function ProfileCard({ userProfile, setUserProfile }) {
             </Form.Select>
           </Form.Group>
           <Button
-            variant="light"
+            variant="dark"
             type="submit"
             className="w-100"
             style={{
               backgroundColor: "transparent",
             }}
           >
-            UPDATE
+            ACTUALIZAR
           </Button>
         </Form>
       </footer>
