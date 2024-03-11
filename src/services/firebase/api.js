@@ -3,7 +3,14 @@ import {
   signInWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
-import { collection, getDoc, getDocs, setDoc, doc } from "firebase/firestore";
+import {
+  collection,
+  getDoc,
+  getDocs,
+  setDoc,
+  doc,
+  updateDoc,
+} from "firebase/firestore";
 import { auth, db } from "./index";
 import { redirect } from "react-router-dom";
 
@@ -19,6 +26,7 @@ export const RegisterUser = async (userData) => {
       accessToken: response.user.accessToken,
     };
     sessionStorage.setItem("accessToken", response.user.accessToken);
+    sessionStorage.setItem("uid", response.user.uid);
     await CreateUserProfile({ ...userData, uid: response.user.uid });
     return userSession;
   } catch (error) {
@@ -33,10 +41,26 @@ export const CreateUserProfile = async (userProfile) => {
     delete userProfile["password"];
     userProfile.membresias = [""];
     const docRef = doc(db, "users", userProfile.uid);
-    let response = await setDoc(docRef, userProfile);
-    console.log("response", response);
+    await setDoc(docRef, userProfile);
   } catch (e) {
     console.error("Failed to create user profile." + e.message);
+  }
+};
+
+export const UpdateUserProfile = async (userProfile, uid) => {
+  const docRef = doc(db, "users", uid);
+  await updateDoc(docRef, userProfile);
+  alert("Información del usuario actualizada!");
+};
+
+export const getUserProfile = async (uid) => {
+  try {
+    const docRef = doc(db, "users", uid);
+    const collectionRequest = await getDoc(docRef);
+    console.log("collectionRequest", collectionRequest);
+    return collectionRequest.data();
+  } catch (e) {
+    console.log("Error getting document:", e);
   }
 };
 
@@ -48,6 +72,7 @@ export const LoginUser = async ({ email, password }) => {
       accessToken: response.user.accessToken,
     };
     sessionStorage.setItem("accessToken", response.user.accessToken);
+    sessionStorage.setItem("uid", response.user.uid);
     redirect("/dashboard");
     return userSession;
   } catch (error) {
@@ -61,6 +86,7 @@ export const LogoutUser = async () => {
   try {
     const response = signOut(auth);
     sessionStorage.removeItem("userSession");
+    sessionStorage.removeItem("uid");
     alert("Logged out successfully!");
     redirect("/");
   } catch (error) {
@@ -68,14 +94,6 @@ export const LogoutUser = async () => {
     console.error("Failed to log out." + error.message);
     return error;
   }
-};
-
-export const addElementToDB = async (
-  collectionName,
-  collectionID,
-  collectionData
-) => {
-  await setDoc(doc(db, collectionName, collectionID), collectionData);
 };
 
 export const getSingleClub = async (collectionID) => {

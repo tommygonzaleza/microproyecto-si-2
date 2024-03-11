@@ -123,7 +123,7 @@ function Register() {
                 favoriteVideogame: e.target.value,
               })
             }
-            value={registerInformation.favoriteVideogame.titulo}
+            value={registerInformation.favoriteVideogame}
           >
             <option disabled>Selecciona tu videojuego favorito</option>
             {games.map((item, index) => (

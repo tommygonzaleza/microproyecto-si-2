@@ -1,4 +1,4 @@
-export default function CardGame(props) {
+export default function CardGame({game}) {
     return (
       <section
         style={{
@@ -34,7 +34,7 @@ export default function CardGame(props) {
               gap: "1rem",
             }}
           >
-            <h1>{props.props.titulo}</h1>
+            <h1>{game.titulo}</h1>
             <p style={{
                 padding:"5px 1rem" ,
                 backgroundColor: "rgb(124, 124, 124)",
@@ -42,7 +42,7 @@ export default function CardGame(props) {
                 width: "fit-content",
 
             }}
-            >{props.props.genero}</p>
+            >{game.genero}</p>
           </div>
           <footer
             style={{
@@ -60,7 +60,7 @@ export default function CardGame(props) {
           >
               <h5 style={{
                 paddingLeft:"1rem"
-              }}>• {props.props.descripcion}</h5>
+              }}>• {game.descripcion}</h5>
           </footer>
         </section>
       </section>
