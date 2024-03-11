@@ -122,6 +122,7 @@ export function Dashboard() {
       }}>
       <Header></Header>
       <section style={{
+        padding:"3rem",
         backgroundImage:
         "url(https://cdn.pixabay.com/photo/2014/04/03/00/39/tetris-308986_640.png)",
         // backgroundSize: "cover",

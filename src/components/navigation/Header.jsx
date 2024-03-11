@@ -41,10 +41,19 @@ export default function Header() {
             href="/profile"
             style={{
               color: "whitesmoke",
+              marginRight: "1rem"
             }}
           >
             Perfil
           </a>
+          <button
+            className="btn btn-outline-secondary"
+            style={{
+              color: "whitesmoke",
+            }}
+          >
+            Cerrar sesión
+          </button>
         </div>
       </div>
     </nav>
