@@ -91,6 +91,7 @@ export const Videogames = () => {
     <Header></Header>
       <section style={{
         marginTop:"1rem",
+        padding: "3rem",
         display: 'flex',
         flexWrap: 'wrap',
         justifyContent: 'center',

@@ -24,14 +24,27 @@ export function Login() {
     if (reg.accessToken) setLoginInformation({ email: "", password: "" });
   };
 
-  return (
+  return (<section style={{
+    backgroundImage:"url(https://cdn.pixabay.com/photo/2015/12/23/22/36/minecraft-1106252_1280.jpg)",
+    marginTop:"2rem",
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    alignItems: 'flex-start',
+    gap: '10px',
+    backgroundSize:"cover"
+  }}>
     <Form
-      className="mx-auto col-md-6 col-12 mt-5 border p-3 rounded"
+      className="mx-auto col-md-6 col-12 mt-5 border p-3 rounded" style={{
+        backgroundColor: "rgb(124 124 124 / 85%)",
+        marginTop:"7rem",
+        marginBottom:"18rem"
+      }}
       onSubmit={async (e) => await SubmitForm(e)}
     >
-      <h1 className="text-center">LOGIN</h1>
+      <h1 className="text-center">Inicia sesión</h1>
       <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Email address</Form.Label>
+        <Form.Label>Dirección de correo electrónico</Form.Label>
         <Form.Control
           type="email"
           placeholder="Enter email"
@@ -44,12 +57,12 @@ export function Login() {
           value={loginInformation.email}
         />
         <Form.Text className="text-muted">
-          We'll never share your email with anyone else.
+          Nunca vamos a compartir tu email con nadie.
         </Form.Text>
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>Password</Form.Label>
+        <Form.Label>Contraseña</Form.Label>
         <Form.Control
           type="password"
           placeholder="Password"
@@ -62,19 +75,22 @@ export function Login() {
           value={loginInformation.password}
         />
       </Form.Group>
-      <Button variant="primary" type="submit" className="w-100">
-        LOGIN
+      <Button variant="dark" type="submit" className="w-100" style={{
+        marginTop:"1rem",
+        backgroundColor:"#9300004d",
+      }}>
+        Inicia sesión
       </Button>
       <p>
-        Don't have an account?{" "}
+        No tienes una cuenta?{" "}
         <Link
           className="text-primary"
           style={{ cursor: "pointer" }}
           to="/"
         >
-          Register here
+          Registrate aquí
         </Link>
       </p>
-    </Form>
+    </Form></section>
   );
 }

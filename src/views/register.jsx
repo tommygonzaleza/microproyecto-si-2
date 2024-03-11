@@ -24,14 +24,28 @@ function Register() {
     if (reg.accessToken) setRegisterInformation({ email: "", password: "" });
   };
 
-  return (
-    <Form
+  return (<section style={{
+    backgroundImage: "url(https://cdn.pixabay.com/photo/2014/11/13/15/23/minecraft-529459_640.jpg)",
+    marginTop:"2rem",
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    alignItems: 'flex-start',
+    gap: '10px',
+    backgroundSize:"cover"
+    
+  }}>
+    <Form style={{
+      backgroundColor: "rgb(124 124 124 / 85%)",
+      marginTop:"7rem",
+      marginBottom:"18rem",
+    }}
       className="mx-auto col-md-6 col-12 mt-5 border p-3 rounded"
       onSubmit={async (e) => await SubmitForm(e)}
     >
-      <h1 className="text-center">Register now!</h1>
+      <h1 className="text-center">Registrate ahora!</h1>
       <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Email address</Form.Label>
+        <Form.Label>Dirección de correo electrónico</Form.Label>
         <Form.Control
           type="email"
           placeholder="Enter email"
@@ -44,12 +58,12 @@ function Register() {
           value={registerInformation.email}
         />
         <Form.Text className="text-muted">
-          We'll never share your email with anyone else.
+          Nunca vamos a compartir tu email con nadie.
         </Form.Text>
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>Password</Form.Label>
+        <Form.Label>Contraseña</Form.Label>
         <Form.Control
           type="password"
           placeholder="Password"
@@ -62,20 +76,29 @@ function Register() {
           value={registerInformation.password}
         />
       </Form.Group>
-      <Button variant="primary" type="submit" className="w-100">
-        REGISTER
+      <Button variant="light" type="submit" className="w-100" style={{
+        backgroundColor:"transparent"
+      }}>
+        REGISTRATE
       </Button>
       <p>
-        Already a member?{" "}
+        Ya eres miembro?{" "}
         <Link
           className="text-primary"
           style={{ cursor: "pointer" }}
           to="/login"
         >
-          Login here
+          Inicia sesión aquí
         </Link>
-      </p>
-    </Form>
+      
+      <Button variant="dark" style={{
+        marginTop:"1rem",
+        backgroundColor:"#9300004d",
+        marginLeft: "6rem"
+      }}>
+        Inicia sesión con Google
+      </Button></p>
+    </Form></section>
   );
 }
 

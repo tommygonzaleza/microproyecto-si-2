@@ -5,6 +5,7 @@ import CardClub from "../components/CardClub";
 import { getClubs } from "../services/firebase/api";
 
 export function Dashboard() {
+  
   const [clubs, setClubs] = useState([]);
 
   useEffect(() => {

@@ -58,7 +58,9 @@ export default function CardGame(props) {
               gap: "1rem",
             }}
           >
-              <h3>{props.props.descripcion}</h3>
+              <h5 style={{
+                paddingLeft:"1rem"
+              }}>• {props.props.descripcion}</h5>
           </footer>
         </section>
       </section>
