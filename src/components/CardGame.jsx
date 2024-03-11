@@ -15,7 +15,7 @@ export default function CardGame({game}) {
             padding: "10px",
             width: "fit-content",
             flexDirection: "column",
-            alignItems: "center",
+            alignItems: "flex-start",
             justifyContent: "center",
             // background: "rgba(255, 255, 255, 0.21)",
             borderRadius: "10px",
@@ -53,9 +53,10 @@ export default function CardGame({game}) {
               color: "white",
               display: "flex",
               flexDirection: "column",
-              paddingTop: "1rem",
-              paddingBottom: "1rem",
+              paddingTop: "1.5rem",
+              paddingBottom: "2rem",
               gap: "1rem",
+              marginBottom: "2rem"
             }}
           >
               <h5 style={{
