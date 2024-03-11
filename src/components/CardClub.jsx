@@ -28,7 +28,7 @@ export default function CardClub({ club }) {
           padding: "10px",
           width: "fit-content",
           flexDirection: "column",
-          alignItems: "center",
+          alignItems: "flex-start",
           justifyContent: "center",
           borderRadius: "10px",
           boxShadow: "0 4px 30px rgba(122, 122, 122, 0.1)",
@@ -49,7 +49,9 @@ export default function CardClub({ club }) {
         >
           <h1>{club.nombre}</h1>
           <p>{club.descripcion}</p>
-        </div>
+        </div><h3 style={{
+          color:"whitesmoke"
+          }}>Juegos:</h3>
         <footer
           style={{
             backgroundColor: "#4f4f4fa8",
@@ -63,9 +65,10 @@ export default function CardClub({ club }) {
             paddingBottom: "1rem",
             gap: "1rem",
           }}
+          
         >
         {games.map((videojuego, index) => (
-            <h5 key={index}>{videojuego.titulo}</h5>
+            <h5 key={index}>• {videojuego.titulo}</h5>
         ))}
         </footer>
       </section>
