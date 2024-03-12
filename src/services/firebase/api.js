@@ -196,7 +196,7 @@ export const SignInWithGoogle = async () => {
       accessToken: response.user.accessToken,
     };
     sessionStorage.setItem("accessToken", response.user.accessToken);
-    sessionStorage.setItem("uid", response.user.accessToken);
+    sessionStorage.setItem("uid", response.user.uid);
     return userSession;
   } catch (error) {
     const errorCode = error.code;
