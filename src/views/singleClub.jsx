@@ -46,9 +46,11 @@ export const SingleClub = () => {
   };
 
   return (
-    <div
+    <section
       style={{
         backgroundColor: "rgb(166 1 101 / 80%)",
+        backgroundSize: "cover",
+        backgroundImage: "url(https://cdn.pixabay.com/photo/2015/12/23/22/39/minecraft-1106262_1280.png)",
       }}
       className="p-4 text-white"
     >
@@ -85,6 +87,7 @@ export const SingleClub = () => {
       <footer
         style={{
           backgroundColor: "#4f4f4fa8",
+          marginBottom:"20rem"
         }}
         className="rounded p-3"
       >
@@ -92,6 +95,6 @@ export const SingleClub = () => {
           <h5 key={index}>• {videojuego.titulo}</h5>
         ))}
       </footer>
-    </div>
+    </section>
   );
 };

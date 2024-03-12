@@ -100,7 +100,7 @@ export default function CardClub({ club }) {
         )}
         </div>
         <div className="row">
-            <Link to={`/club/${club.id}`} className="btn btn-outline-secondary ms-3 pointer">
+            <Link to={`/club/${club.id}`} className="btn btn-outline-dark ms-3 pointer" style={{color:"whitesmoke"}}>
               Ver más!
             </Link>
         </div>
