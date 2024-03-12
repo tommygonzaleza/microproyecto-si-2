@@ -193,10 +193,10 @@ export const SignInWithGoogle = async () => {
     // IdP data available using getAdditionalUserInfo(result)
     let userSession = {
       user,
-      accessToken: user.accessToken,
+      accessToken: response.user.accessToken,
     };
-    sessionStorage.setItem("accessToken", user.accessToken);
-    sessionStorage.setItem("uid", user.uid);
+    sessionStorage.setItem("accessToken", response.user.accessToken);
+    sessionStorage.setItem("uid", response.user.accessToken);
     return userSession;
   } catch (error) {
     const errorCode = error.code;

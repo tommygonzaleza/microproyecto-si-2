@@ -98,7 +98,10 @@ export function Login({ setAccessToken }) {
             style={{
               backgroundColor: "#9300004d",
             }}
-            onClick={async () => SignInWithGoogle()}
+            onClick={async () => {
+              const response = await SignInWithGoogle()
+              setAccessToken(response.accessToken);
+            }}
           >
             Inicia sesión con Google
           </Button>
