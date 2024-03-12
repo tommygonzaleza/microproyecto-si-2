@@ -86,7 +86,6 @@ export const getUserProfile = async (uid) => {
   try {
     const docRef = doc(db, "users", uid);
     const collectionRequest = await getDoc(docRef);
-    console.log("collectionRequest", collectionRequest);
     return collectionRequest.data();
   } catch (e) {
     console.log("Error getting document:", e);

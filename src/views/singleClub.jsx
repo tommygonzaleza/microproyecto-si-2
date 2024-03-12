@@ -8,19 +8,23 @@ import {
 } from "../services/firebase/api";
 
 export const SingleClub = () => {
+  const { id } = useParams();
   const [club, setClub] = useState({
-    id: "",
+    id,
     nombre: "",
     descripcion: "",
     videojuegos: [],
   });
-  const [membresias, setMembresias] = useState([]);
-  const { id } = useParams();
+  const [joinedClubs, setJoinedClubs] = useState([]);
 
   useEffect(() => {
     fetchClub(id);
     fetchUserProfile();
   }, []);
+
+  useEffect(() => {
+    sessionStorage.setItem("joinedClubs", joinedClubs);
+  }, [joinedClubs]);
 
   const fetchClub = async (id) => {
     let _club = await getSingleClub(id);
@@ -30,20 +34,22 @@ export const SingleClub = () => {
   const fetchUserProfile = async () => {
     let uid = sessionStorage.getItem("uid");
     let _userProfile = await getUserProfile(uid);
-    setMembresias(_userProfile.membresias);
+    setJoinedClubs(_userProfile.membresias);
   };
 
   const joinNewClub = async (_club) => {
     let uid = sessionStorage.getItem("uid");
-    await JoinClub(_club, uid);
+    await JoinClub({..._club, id}, uid);
     await fetchUserProfile();
   };
 
   const leaveNewClub = async (_club) => {
     let uid = sessionStorage.getItem("uid");
-    await LeaveClub(_club, uid);
+    await LeaveClub({..._club, id}, uid);
     await fetchUserProfile();
   };
+
+  console.log("joinedClubs", joinedClubs);
 
   return (
     <div
@@ -52,14 +58,14 @@ export const SingleClub = () => {
       }}
       className="p-4 text-white"
     >
-        <Link to="/dashboard" className="text-white">
-            {"<"}-- Regresar
-        </Link>
+      <Link to="/dashboard" className="text-white">
+        {"<"}-- Regresar
+      </Link>
       <div className="col-12">
         <h1>{club.nombre}</h1>
         <p>{club.descripcion}</p>
       </div>
-      {!membresias.includes(club.id) ? (
+      {!joinedClubs.includes(id) ? (
         <button
           className="btn btn-outline-secondary"
           style={{
