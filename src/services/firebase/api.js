@@ -188,9 +188,8 @@ export const SignInWithGoogle = async () => {
   try {
     const response = await signInWithPopup(auth, provider);
     console.log(response)
-    const token = response.accessToken;
     // The signed-in user info.
-    const user = result.user;
+    const user = response.user;
     // IdP data available using getAdditionalUserInfo(result)
     let userSession = {
       user,
