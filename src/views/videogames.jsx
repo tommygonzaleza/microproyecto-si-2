@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Header from "../components/navigation/Header";
 import CardGame from "../components/CardGame";
 import { getVideogames } from "../services/firebase/api";
 
@@ -22,7 +21,6 @@ export const Videogames = () => {
           "url(https://cdn.pixabay.com/photo/2019/04/12/08/44/pacman-4121590_1280.png)",
       }}
     >
-      <Header />
       <section
         style={{
           marginTop: "1rem",

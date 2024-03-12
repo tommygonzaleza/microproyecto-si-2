@@ -2,9 +2,10 @@ import React from "react";
 import { LogoutUser } from "../../services/firebase/api";
 
 
-export default function Header() {
+export default function Header({setAccessToken}) {
   const handleClick = async () => {
       await LogoutUser();
+      setAccessToken(null);
   };  
   return (
     <nav

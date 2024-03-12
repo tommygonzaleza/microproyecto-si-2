@@ -4,7 +4,7 @@ import { Link, Navigate, redirect } from "react-router-dom";
 import { RegisterUser, getVideogames } from "../services/firebase/api";
 import { ValidateEmail, ValidatePassword } from "../utils";
 
-function Register() {
+function Register({ setAccessToken }) {
   const [games, setGames] = useState([]);
   const [registerInformation, setRegisterInformation] = useState({
     email: "",
@@ -44,7 +44,7 @@ function Register() {
         username: "",
         favoriteVideogame: "",
       });
-    redirect("/videogames")
+    setAccessToken(reg.accessToken);
   };
 
   return (

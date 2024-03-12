@@ -4,7 +4,7 @@ import { Link, Navigate, redirect } from "react-router-dom";
 import { LoginUser } from "../services/firebase/api";
 import { ValidateEmail, ValidatePassword } from "../utils";
 
-export function Login() {
+export function Login({setAccessToken}) {
   const [loginInformation, setLoginInformation] = useState({
     email: "",
     password: "",
@@ -22,6 +22,7 @@ export function Login() {
     }
     let reg = await LoginUser(loginInformation);
     if (reg.accessToken) setLoginInformation({ email: "", password: "" });
+    setAccessToken(reg.accessToken);
   };
 
   return (<section style={{

@@ -1,5 +1,5 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import React from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom/client";
 import "./styles/index.css";
 import Register from "./views/register.jsx";
@@ -12,41 +12,47 @@ import { PrivateRoute } from "./layout/PrivateRoute.jsx";
 import { PublicRoute } from "./layout/PublicRoute.jsx";
 import { app } from "./services/firebase";
 
-const router = createBrowserRouter([
-  {
-    element: <PublicRoute />,
-    children: [
-      {
-        path: "/",
-        element: <Register />,
-      },
-      {
-        path: "/login",
-        element: <Login />,
-      },
-    ],
-  },
-  {
-    element: <PrivateRoute />,
-    children: [
-      {
-        path: "/dashboard",
-        element: <Dashboard />,
-      },
-      {
-        path: "/videogames",
-        element: <Videogames />,
-      },
-      {
-        path: "/profile",
-        element: <Profile />,
-      },
-    ],
-  },
-]);
+const App = () => {
+  const [accessToken, setAccessToken] = useState(null);
+
+  const router = createBrowserRouter([
+    {
+      element: <PublicRoute accessToken={accessToken} setAccessToken={setAccessToken} />,
+      children: [
+        {
+          path: "/",
+          element: <Register />,
+        },
+        {
+          path: "/login",
+          element: <Login accessToken={accessToken} setAccessToken={setAccessToken} />,
+        },
+      ],
+    },
+    {
+      element: <PrivateRoute accessToken={accessToken} setAccessToken={setAccessToken}  />,
+      children: [
+        {
+          path: "/dashboard",
+          element: <Dashboard />,
+        },
+        {
+          path: "/videogames",
+          element: <Videogames />,
+        },
+        {
+          path: "/profile",
+          element: <Profile />,
+        },
+      ],
+    },
+  ]);
+
+  return <RouterProvider router={router} />;
+};
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <App />
   </React.StrictMode>
 );

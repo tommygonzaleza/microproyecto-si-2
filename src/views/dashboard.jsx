@@ -1,6 +1,5 @@
 import "../styles/app.css";
 import React, { useEffect, useState } from "react";
-import Header from "../components/navigation/Header";
 import CardClub from "../components/CardClub";
 import { getClubs } from "../services/firebase/api";
 
@@ -23,7 +22,6 @@ export function Dashboard() {
         backgroundColor: "#560000",
       }}
     >
-      <Header />
       <section
         style={{
           backgroundImage:
