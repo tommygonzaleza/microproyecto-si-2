@@ -36,6 +36,7 @@ export function Dashboard() {
           alignItems: "flex-start",
           gap: "10px",
           backgroundColor: "#560000",
+          padding: "2rem"
         }}
       >
         {clubs.map((club, index) => (

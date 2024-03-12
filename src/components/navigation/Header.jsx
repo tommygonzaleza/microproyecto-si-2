@@ -1,6 +1,11 @@
 import React from "react";
+import { LogoutUser } from "../../services/firebase/api";
+
 
 export default function Header() {
+  const handleClick = async () => {
+      await LogoutUser();
+  };  
   return (
     <nav
       className="navbar navbar-expand-lg sticky-top navbar-dark"
@@ -51,6 +56,7 @@ export default function Header() {
             style={{
               color: "whitesmoke",
             }}
+            onClick={handleClick}
           >
             Cerrar sesión
           </button>

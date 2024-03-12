@@ -35,12 +35,10 @@ export default function ProfileCard({ userProfile, setUserProfile }) {
         WebkitBackdropFilter: "blur(10.1px)",
         border: "1px solid rgba(255, 255, 255, 0.3)",
         color: "whitesmoke",
+        paddingTop: "3rem",
+        marginBottom: "7rem",
       }}
     >
-      <img
-        src="https://lh3.googleusercontent.com/a/ACg8ocK_xmUM3IXzPBco7kM1ve1RMtD9qNmGLWiwP7zEIhHmd6s=s360-c-no"
-        className="img-fluid"
-      ></img>
       <footer
         style={{
           backgroundColor: "#4f4f4fa8",
@@ -57,8 +55,8 @@ export default function ProfileCard({ userProfile, setUserProfile }) {
         <Form
           style={{
             backgroundColor: "rgb(124 124 124 / 85%)",
-            marginTop: "7rem",
-            marginBottom: "18rem",
+            marginTop: "5rem",
+            marginBottom: "5rem",
           }}
           className="mx-auto col-md-6 col-12 mt-5 border p-3 rounded"
           onSubmit={async (e) => await SubmitForm(e)}
@@ -126,14 +124,14 @@ export default function ProfileCard({ userProfile, setUserProfile }) {
             </Form.Select>
           </Form.Group>
           <Button
-            variant="light"
+            variant="dark"
             type="submit"
             className="w-100"
             style={{
               backgroundColor: "transparent",
             }}
           >
-            UPDATE
+            ACTUALIZAR
           </Button>
         </Form>
       </footer>
