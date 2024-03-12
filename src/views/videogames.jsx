@@ -4,6 +4,7 @@ import { getVideogames } from "../services/firebase/api";
 
 export const Videogames = () => {
   const [games, setGames] = useState([]);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     fetchGames();
@@ -14,6 +15,16 @@ export const Videogames = () => {
     setGames(_games);
   };
 
+  const handleSearch = (event) => {
+    setSearch(event.target.value);
+  };
+
+const filteredGames = games.filter(
+  (game) =>
+    (game.titulo && typeof game.titulo === 'string' && game.titulo.toLowerCase().includes(search.toLowerCase())) ||
+    (game.genero && typeof game.genero === 'string' && game.genero.toLowerCase().includes(search.toLowerCase()))
+);
+
   return (
     <section
       style={{
@@ -21,6 +32,11 @@ export const Videogames = () => {
           "url(https://cdn.pixabay.com/photo/2019/04/12/08/44/pacman-4121590_1280.png)",
       }}
     >
+      <input type="text" value={search} placeholder="Nombre videojuego" onChange={handleSearch}
+      style={{
+        marginTop:"2rem",
+        marginLeft:"2rem",
+      }} />
       <section
         style={{
           marginTop: "1rem",
@@ -32,7 +48,7 @@ export const Videogames = () => {
           gap: "10px",
         }}
       >
-        {games.map((game, index) => (
+        {filteredGames.map((game, index) => (
           <CardGame key={index} game={game} />
         ))}
       </section>
