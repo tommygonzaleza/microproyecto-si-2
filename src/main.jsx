@@ -7,6 +7,7 @@ import { Dashboard } from "./views/dashboard";
 import { Login } from "./views/login";
 import { Videogames } from "./views/videogames.jsx";
 import { Profile } from "./views/profile.jsx";
+import { SingleClub } from "./views/singleClub.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { PrivateRoute } from "./layout/PrivateRoute.jsx";
 import { PublicRoute } from "./layout/PublicRoute.jsx";
@@ -49,6 +50,10 @@ const App = () => {
           path: "/profile",
           element: <Profile />,
         },
+        {
+          path: "/club/:id",
+          element: <SingleClub />,
+        }
       ],
     },
   ]);

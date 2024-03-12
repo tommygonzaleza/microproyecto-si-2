@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { getSingleClub, getUserProfile, JoinClub, LeaveClub } from "../services/firebase/api";
+import { Link } from "react-router-dom";
 
 export default function CardClub({ club }) {
   const [games, setGames] = useState([]);
@@ -75,9 +76,10 @@ export default function CardClub({ club }) {
           <h1>{club.nombre}</h1>
           <p>{club.descripcion}</p>
         </div>
+        <div className="row">
         {!joinedClubs.includes(club.id) ? (
           <button
-            className="btn btn-outline-secondary"
+            className="btn btn-outline-secondary ms-3"
             style={{
               color: "whitesmoke",
             }}
@@ -87,7 +89,7 @@ export default function CardClub({ club }) {
           </button>
         ) : (
           <button
-            className="btn btn-outline-secondary"
+            className="btn btn-outline-secondary ms-3"
             style={{
               color: "whitesmoke",
             }}
@@ -96,7 +98,12 @@ export default function CardClub({ club }) {
             Dejar club :(
           </button>
         )}
-
+        </div>
+        <div className="row">
+            <Link to={`/club/${club.id}`} className="btn btn-outline-secondary ms-3 pointer">
+              Ver más!
+            </Link>
+        </div>
         <h3
           style={{
             color: "whitesmoke",
