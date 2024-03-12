@@ -187,16 +187,16 @@ export const getVideogames = async () => {
 export const SignInWithGoogle = async () => {
   try {
     const response = await signInWithPopup(auth, provider);
-    const credential = GoogleAuthProvider.credentialFromResult(result);
-    const token = credential.accessToken;
+    console.log(response)
+    const token = response.accessToken;
     // The signed-in user info.
     const user = result.user;
     // IdP data available using getAdditionalUserInfo(result)
     let userSession = {
       user,
-      accessToken: token,
+      accessToken: user.accessToken,
     };
-    sessionStorage.setItem("accessToken", token);
+    sessionStorage.setItem("accessToken", user.accessToken);
     sessionStorage.setItem("uid", user.uid);
     return userSession;
   } catch (error) {
