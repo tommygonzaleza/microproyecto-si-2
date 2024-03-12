@@ -17,7 +17,7 @@ export default function Header({ setAccessToken }) {
     >
       <div className="container-fluid">
         <Link className="navbar-brand" to="/">
-          NombrePagina
+          COTTOM PICKERS
         </Link>
         <button
           className="navbar-toggler"
