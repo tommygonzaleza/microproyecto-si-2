@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Button, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { LoginUser } from "../services/firebase/api";
+import { LoginUser, SignInWithGoogle } from "../services/firebase/api";
 import { ValidateEmail, ValidatePassword } from "../utils";
 
 export function Login({ setAccessToken }) {
@@ -92,6 +92,16 @@ export function Login({ setAccessToken }) {
         >
           Inicia sesión
         </Button>
+        <Button
+            variant="dark"
+            className="mt-2 w-100"
+            style={{
+              backgroundColor: "#9300004d",
+            }}
+            onClick={async () => SignInWithGoogle()}
+          >
+            Inicia sesión con Google
+          </Button>
         <p>
           No tienes una cuenta?{" "}
           <Link className="text-primary" style={{ cursor: "pointer" }} to="/">

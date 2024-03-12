@@ -184,16 +184,6 @@ function Register({ setAccessToken }) {
           >
             Inicia sesión aquí
           </Link>
-          <Button
-            variant="dark"
-            style={{
-              marginTop: "1rem",
-              backgroundColor: "#9300004d",
-              marginLeft: "6rem",
-            }}
-          >
-            Inicia sesión con Google
-          </Button>
         </p>
       </Form>
     </section>

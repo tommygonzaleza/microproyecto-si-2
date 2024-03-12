@@ -2,6 +2,8 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
+  signInWithPopup,
+  GoogleAuthProvider,
 } from "firebase/auth";
 import {
   collection,
@@ -13,7 +15,7 @@ import {
   arrayUnion,
   arrayRemove,
 } from "firebase/firestore";
-import { auth, db } from "./index";
+import { auth, db, provider } from "./index";
 
 export const RegisterUser = async (userData) => {
   try {
@@ -179,5 +181,27 @@ export const getVideogames = async () => {
     return videogames;
   } catch (e) {
     console.log("Error getting document:", e);
+  }
+};
+
+export const SignInWithGoogle = async () => {
+  try {
+    const response = await signInWithPopup(auth, provider);
+    const credential = GoogleAuthProvider.credentialFromResult(result);
+    const token = credential.accessToken;
+    // The signed-in user info.
+    const user = result.user;
+    // IdP data available using getAdditionalUserInfo(result)
+    let userSession = {
+      user,
+      accessToken: token,
+    };
+    sessionStorage.setItem("accessToken", token);
+    sessionStorage.setItem("uid", user.uid);
+    return userSession;
+  } catch (error) {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    console.error("Failed to login with google." + errorMessage);
   }
 };
