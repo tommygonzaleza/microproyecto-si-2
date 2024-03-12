@@ -1,5 +1,5 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom/client";
 import "./styles/index.css";
 import Register from "./views/register.jsx";
@@ -14,14 +14,19 @@ import { app } from "./services/firebase";
 
 const App = () => {
   const [accessToken, setAccessToken] = useState(null);
+  
+  useEffect(() => {
+    let _token= sessionStorage.getItem('accessToken');
+    setAccessToken(_token);
+  }, [])
 
   const router = createBrowserRouter([
     {
-      element: <PublicRoute accessToken={accessToken} setAccessToken={setAccessToken} />,
+      element: <PublicRoute accessToken={accessToken} />,
       children: [
         {
           path: "/",
-          element: <Register />,
+          element: <Register accessToken={accessToken} setAccessToken={setAccessToken} />,
         },
         {
           path: "/login",

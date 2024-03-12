@@ -14,7 +14,6 @@ import {
   arrayRemove,
 } from "firebase/firestore";
 import { auth, db } from "./index";
-import { redirect } from "react-router-dom";
 
 export const RegisterUser = async (userData) => {
   try {
@@ -103,7 +102,6 @@ export const LoginUser = async ({ email, password }) => {
     };
     sessionStorage.setItem("accessToken", response.user.accessToken);
     sessionStorage.setItem("uid", response.user.uid);
-    redirect("/dashboard");
     return userSession;
   } catch (error) {
     alert("Failed to login." + error.message);
@@ -115,10 +113,10 @@ export const LoginUser = async ({ email, password }) => {
 export const LogoutUser = async () => {
   try {
     const response = signOut(auth);
-    sessionStorage.removeItem("userSession");
     sessionStorage.removeItem("uid");
+    sessionStorage.removeItem("joinedClubs");
+    sessionStorage.removeItem("accessToken");
     alert("Logged out successfully!");
-    redirect("/");
   } catch (error) {
     alert("Failed to log out." + error.message);
     console.error("Failed to log out." + error.message);

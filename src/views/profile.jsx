@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Header from "../components/navigation/Header";
 import ProfileCard from "../components/ProfileCard";
 import { getUserProfile } from "../services/firebase/api";
 
@@ -32,7 +31,6 @@ export const Profile = () => {
           "url(https://cdn.pixabay.com/photo/2015/11/01/19/48/minecraft-1017472_1280.jpg)",
       }}
     >
-      <Header />
       <section
         style={{
           marginTop: "5rem",

@@ -1,12 +1,13 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { LogoutUser } from "../../services/firebase/api";
 
-
-export default function Header({setAccessToken}) {
+export default function Header({ setAccessToken }) {
   const handleClick = async () => {
-      await LogoutUser();
-      setAccessToken(null);
-  };  
+    await LogoutUser();
+    setAccessToken(null);
+  };
+
   return (
     <nav
       className="navbar navbar-expand-lg sticky-top navbar-dark"
@@ -32,32 +33,32 @@ export default function Header({setAccessToken}) {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <a className="nav-link" href="/dashboard">
+              <Link className="nav-link" to="/dashboard">
                 Club
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/videogames">
+              <Link className="nav-link" to="/videogames">
                 Videojuegos
-              </a>
+              </Link>
             </li>
           </ul>
-          <a
+          <Link
             className="btn btn-outline-secondary"
-            href="/profile"
+            to="/profile"
             style={{
               color: "whitesmoke",
-              marginRight: "1rem"
+              marginRight: "1rem",
             }}
           >
             Perfil
-          </a>
+          </Link>
           <button
             className="btn btn-outline-secondary"
             style={{
               color: "whitesmoke",
             }}
-            onClick={handleClick}
+            onClick={async () => await handleClick()}
           >
             Cerrar sesión
           </button>

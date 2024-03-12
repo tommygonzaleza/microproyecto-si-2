@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Button, Form } from "react-bootstrap";
-import { Link, Navigate, redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { RegisterUser, getVideogames } from "../services/firebase/api";
 import { ValidateEmail, ValidatePassword } from "../utils";
 
